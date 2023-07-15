@@ -8,15 +8,16 @@ import java.util.List;
 public class Doctors
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String name;
-
-    private String lastname;
-
     private String ssn;
 
+    @Column(name = "doctor_name", nullable = false)
+    private String name;
+
+    @Column(name = "doctor_lastName", nullable = false)
+    private String lastname;
+
+    @Transient
+    @Column(nullable = false)
     private String password;
 
     @ManyToOne
@@ -30,10 +31,13 @@ public class Doctors
     @OneToMany(mappedBy = "doctors")
     private List<Appointments> appointmentsList = new ArrayList<>();
 
-    public Long getId() {
-        return id;
+    public String getSsn() {
+        return ssn;
     }
 
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
+    }
 
     public String getName() {
         return name;
@@ -49,14 +53,6 @@ public class Doctors
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public String getSsn() {
-        return ssn;
-    }
-
-    public void setSsn(String ssn) {
-        this.ssn = ssn;
     }
 
     public String getPassword() {
@@ -94,13 +90,11 @@ public class Doctors
     @Override
     public String toString() {
         return "Doctors{" +
-                "id=" + id +
+                "ssn='" + ssn + '\'' +
                 ", name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", ssn='" + ssn + '\'' +
-                ", password='" + password + '\'' +
-                ", hospitals=" + hospitals +
-                ", speciality=" + speciality +
+                ", hospitals= " + hospitals.getId() +
+                ", speciality= " + speciality.getSpeciality() +
                 '}';
     }
 }

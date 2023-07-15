@@ -41,7 +41,7 @@ public class Specialities
     public String toString() {
         return "Specialities{" +
                 "id=" + id +
-                ", hospitals=" + hospitals +
+                ", hospitals=" + hospitals.getId() +
                 ", speciality='" + speciality + '\'' +
                 '}';
     }

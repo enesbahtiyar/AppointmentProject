@@ -6,9 +6,6 @@ import javax.persistence.*;
 public class Patients
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(nullable = false)
     private String patient_SSN;
 
@@ -18,11 +15,13 @@ public class Patients
 
     private String gender;
 
+    private String patient_Security_Number;
+
+    @Column(length = 1000)
     private String patientHistory;
 
-    public Long getId() {
-        return id;
-    }
+    @OneToOne(mappedBy = "patients")
+    private Appointments appointments;
 
     public String getPatient_SSN() {
         return patient_SSN;
@@ -56,6 +55,14 @@ public class Patients
         this.gender = gender;
     }
 
+    public String getPatient_Security_Number() {
+        return patient_Security_Number;
+    }
+
+    public void setPatient_Security_Number(String patient_Security_Number) {
+        this.patient_Security_Number = patient_Security_Number;
+    }
+
     public String getPatientHistory() {
         return patientHistory;
     }
@@ -64,15 +71,24 @@ public class Patients
         this.patientHistory = patientHistory;
     }
 
+    public Appointments getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(Appointments appointments) {
+        this.appointments = appointments;
+    }
+
     @Override
     public String toString() {
         return "Patients{" +
-                "id=" + id +
-                ", patient_SSN='" + patient_SSN + '\'' +
+                "patient_SSN='" + patient_SSN + '\'' +
                 ", patient_Name='" + patient_Name + '\'' +
                 ", patient_Surname='" + patient_Surname + '\'' +
                 ", gender='" + gender + '\'' +
+                ", patient_Security_Number='" + patient_Security_Number + '\'' +
                 ", patientHistory='" + patientHistory + '\'' +
+                ", appointments=" + appointments +
                 '}';
     }
 }

@@ -28,7 +28,6 @@ public class Hospitals
         return id;
     }
 
-
     public String getName() {
         return name;
     }
@@ -67,6 +66,8 @@ public class Hospitals
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", country='" + country + '\'' +
+                ", doctorsList=" + doctorsList +
+                ", specialitiesList=" + specialitiesList +
                 '}';
     }
 }
